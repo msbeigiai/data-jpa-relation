@@ -1,5 +1,5 @@
 package com.msbeigi.tutorialapp.model;
 
-public record TagRequestBody(String name) {
+public record TagRequestBody(Long id, String name) {
 
 }

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class TutorialController {
 
     private final TutorialService tutorialService;

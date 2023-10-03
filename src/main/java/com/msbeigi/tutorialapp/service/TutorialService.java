@@ -21,4 +21,8 @@ public interface TutorialService {
 
     List<Tutorial> findPublished(boolean published);
 
+    boolean existsById(Long tutorialId);
+
+    List<Tutorial> findTutorialsByTagId(Long tagId);
+
 }

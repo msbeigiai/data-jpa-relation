@@ -52,4 +52,14 @@ public class TutorialServiceImpl implements TutorialService {
         return tutorialRepository.findByPublished(published);
     }
 
+    @Override
+    public boolean existsById(Long tutorialId) {
+        return tutorialRepository.existsById(tutorialId);
+    }
+
+    @Override
+    public List<Tutorial> findTutorialsByTagId(Long tagId) {
+        return tutorialRepository.findTutorialsByTagId(tagId);
+    }
+
 }

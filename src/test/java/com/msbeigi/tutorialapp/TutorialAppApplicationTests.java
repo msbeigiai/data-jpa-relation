@@ -1,4 +1,4 @@
-package com.msbeigi.tutorial_app;
+package com.msbeigi.tutorialapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -15,4 +15,8 @@ public interface TagService {
 
     boolean existsById(Long tagId);
 
+    void saveTag(Tag tag);
+
+    void deleteById(Long tagId);
+
 }

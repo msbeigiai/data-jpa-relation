@@ -8,9 +8,12 @@ import javax.management.RuntimeErrorException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -98,4 +101,32 @@ public class TagController {
         return new ResponseEntity<Tag>(tag, HttpStatus.CREATED);
     }
 
+    @PutMapping("/tags/{id}")
+    public ResponseEntity<Tag> updateTag(@PathVariable("id") Long tagId, @RequestBody TagRequestBody tagRequestBody) {
+        Tag tag = tagService.findTagById(tagId)
+                .orElseThrow(() -> new ResourceNotFoundException("tag  not found"));
+        tag.setName(tagRequestBody.name());
+
+        tagService.saveTag(tag);
+
+        return new ResponseEntity<Tag>(tag, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/tutorials/{tutorialId}/tags/{tagId}")
+    public ResponseEntity<HttpStatus> deleteTagFromTutorial(@PathVariable("tutorialId") Long tutorialId,
+            @PathVariable("tagId") Long tagId) {
+        Tutorial tutorial = tutorialService.findTutorialById(tutorialId)
+                .orElseThrow(() -> new ResourceNotFoundException("tutorial not found"));
+        tutorial.removeTag(tagId);
+        tutorialService.saveTutorial(tutorial);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/tags/{id}")
+    public ResponseEntity<HttpStatus> deleteTag(@PathVariable("id") Long tagId) {
+        tagService.deleteById(tagId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

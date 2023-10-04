@@ -9,5 +9,5 @@ import com.msbeigi.tutorialapp.entity.Tag;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
-    List<Tag> findTagsByTutorialId(Long tutorialId);
+    List<Tag> findTagsByTutorialsId(Long tutorialId);
 }

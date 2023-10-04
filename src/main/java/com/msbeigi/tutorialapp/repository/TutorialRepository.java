@@ -9,7 +9,7 @@ import com.msbeigi.tutorialapp.entity.Tutorial;
 
 @Repository
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
-    List<Tutorial> findTutorialsByTagId(Long tagId);
+    List<Tutorial> findTutorialsByTagsId(Long tagId);
 
     List<Tutorial> findByTitleContaining(String title);
 

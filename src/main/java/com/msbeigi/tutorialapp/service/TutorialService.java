@@ -23,6 +23,6 @@ public interface TutorialService {
 
     boolean existsById(Long tutorialId);
 
-    List<Tutorial> findTutorialsByTagId(Long tagId);
+    List<Tutorial> findTutorialsByTagsId(Long tagId);
 
 }

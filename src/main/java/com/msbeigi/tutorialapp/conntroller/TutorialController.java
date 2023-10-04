@@ -88,9 +88,9 @@ public class TutorialController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/tutorials")
-    public ResponseEntity<List<Tutorial>> getAllPublished(@RequestParam("published") boolean published) {
-        List<Tutorial> publishedTutorials = tutorialService.findPublished(published);
+    @GetMapping("/tutorials/published")
+    public ResponseEntity<List<Tutorial>> getAllPublished() {
+        List<Tutorial> publishedTutorials = tutorialService.findPublished(true);
         if (publishedTutorials.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

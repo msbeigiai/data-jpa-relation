@@ -58,8 +58,8 @@ public class TutorialServiceImpl implements TutorialService {
     }
 
     @Override
-    public List<Tutorial> findTutorialsByTagId(Long tagId) {
-        return tutorialRepository.findTutorialsByTagId(tagId);
+    public List<Tutorial> findTutorialsByTagsId(Long tagId) {
+        return tutorialRepository.findTutorialsByTagsId(tagId);
     }
 
 }

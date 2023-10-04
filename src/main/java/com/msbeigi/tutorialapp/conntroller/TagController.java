@@ -3,10 +3,7 @@ package com.msbeigi.tutorialapp.conntroller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msbeigi.tutorialapp.entity.Tag;
@@ -73,32 +69,35 @@ public class TagController {
             throw new ResourceNotFoundException("tag not found!");
         }
 
-        List<Tutorial> tutorials = tutorialService.findTutorialsByTagId(tagId);
+        List<Tutorial> tutorials = tutorialService.findTutorialsByTagsId(tagId);
 
         return new ResponseEntity<List<Tutorial>>(tutorials, HttpStatus.OK);
     }
 
     @PostMapping("/tutorials/{tutorialId}/tags")
-    public ResponseEntity<Tag> addTag(@PathVariable("tutorialId") Long tutorialId, TagRequestBody tagRequestBody) {
+    public ResponseEntity<HttpStatus> addTag(@PathVariable("tutorialId") Long tutorialId,
+            @RequestBody TagRequestBody tagRequestBody) {
         Tutorial tutorial = tutorialService.findTutorialById(tutorialId)
                 .orElseThrow(() -> new ResourceNotFoundException("tutorial not found."));
-        if (tagRequestBody.id() != 0L) {
-            Tag tag = tagService.findTagById(tagRequestBody.id())
-                    .orElseThrow(() -> new ResourceNotFoundException("tag not found"));
-            tutorial.addTag(tag);
-            tutorialService.saveTutorial(tutorial);
-
-            return new ResponseEntity<>(tag, HttpStatus.CREATED);
-        }
+        /*
+         * if (tagRequestBody.id() != 0L) {
+         * Tag tag = tagService.findTagById(tagRequestBody.id())
+         * .orElseThrow(() -> new ResourceNotFoundException("tag not found"));
+         * tutorial.addTag(tag);
+         * tutorialService.saveTutorial(tutorial);
+         * 
+         * return new ResponseEntity<>(tag, HttpStatus.CREATED);
+         * }
+         */
 
         Tag tag = new Tag();
-        tag.setId(tagRequestBody.id());
+        // tag.setId(tagRequestBody.id());
         tag.setName(tagRequestBody.name());
         tutorial.addTag(tag);
 
         tutorialService.saveTutorial(tutorial);
 
-        return new ResponseEntity<Tag>(tag, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/tags/{id}")

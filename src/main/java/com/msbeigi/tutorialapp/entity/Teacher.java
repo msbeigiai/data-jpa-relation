@@ -38,12 +38,12 @@ public class Teacher {
         this.firstname = firstname;
         this.lastname = lastname;
     }
-
-    public Teacher(String firstname, String lastname, List<Course> courses) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-//        this.courses = courses;
-    }
+//
+//    public Teacher(String firstname, String lastname, List<Course> courses) {
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+////        this.courses = courses;
+//    }
 
     public String getFirstname() {
         return firstname;
@@ -75,7 +75,6 @@ public class Teacher {
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-//                ", courses=" + courses +
                 '}';
     }
 }

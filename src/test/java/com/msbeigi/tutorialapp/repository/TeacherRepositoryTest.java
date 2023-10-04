@@ -22,11 +22,11 @@ class TeacherRepositoryTest {
         Course course2 = new Course("C++", 6);
         Teacher teacher = new Teacher(
                 "Mohsen",
-                "Sadeghbeigi",
-                List.of(
-                        course,
-                        course2
-                )
+                "Sadeghbeigi"
+//                List.of(
+//                        course,
+//                        course2
+//                )
         );
         teacherRepository.save(teacher);
     }

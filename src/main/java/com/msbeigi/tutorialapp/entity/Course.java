@@ -2,6 +2,9 @@ package com.msbeigi.tutorialapp.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "course")
 @Table(name = "course")
 public class Course {
@@ -36,6 +39,22 @@ public class Course {
     )
     private Teacher teacher;
 
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "student_course_map",
+            joinColumns = @JoinColumn(
+                    name = "course_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "student_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private List<Student> students;
+
     public Course() {
     }
 
@@ -61,6 +80,13 @@ public class Course {
         this.credit = credit;
         this.courseMaterial = courseMaterial;
         this.teacher = teacher;
+    }
+
+    public void addStudents(Student student) {
+        if (students == null) {
+            students = new ArrayList<>();
+            students.add(student);
+        }
     }
 
     public String getTitle() {
@@ -102,7 +128,7 @@ public class Course {
                 ", title='" + title + '\'' +
                 ", credit=" + credit +
                 ", courseMaterial=" + courseMaterial +
-                ", teacher=" + teacher +
+//                ", teacher=" + teacher +
                 '}';
     }
 }

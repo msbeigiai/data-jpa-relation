@@ -64,4 +64,34 @@ public class StudentRepositoryTest {
         Student student = studentRepository.findByNameAndLastname("Mohsen", "Sadegh");
         System.out.println(student);
     }
+
+    @Test
+    public void findStudentByEmailAddress() {
+        Student student = studentRepository.getStudentByEmailAddress("mohsen@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void findStudentFirstnameByEmailAddress() {
+        String firstname = studentRepository.getStudentFirstnameByEmailAddress("mohsen@gmail.com");
+        System.out.println(firstname);
+    }
+
+    @Test
+    public void findStudentByEmailAddressNative() {
+        Student student = studentRepository.getStudentByEmailAddressNative("mohsen@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void findStudentByEmailAddressNativeNaming() {
+        Student student = studentRepository.getStudentByEmailAddressNativeNameParam("mohsen@gmail.com");
+        System.out.println(student);
+    }
+
+    @Test
+    public void UpdateStudentNameByEmail() {
+        int updated = studentRepository.updateStudentNameByEmail("Mohsen updated", "mohsen@gmail.com");
+        System.out.println(updated);
+    }
 }

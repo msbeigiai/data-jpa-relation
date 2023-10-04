@@ -13,7 +13,6 @@ import jakarta.persistence.UniqueConstraint;
 @Entity(name = "student")
 @Table(name = "student", uniqueConstraints = @UniqueConstraint(name = "email_unique", columnNames = "email"))
 public class Student {
-
     @Id
     @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
@@ -81,6 +80,12 @@ public class Student {
 
     public void setGuardian(Guardian guardian) {
         this.guardian = guardian;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", lastname=" + lastname + ", email=" + email + ", guardian="
+                + guardian + "]";
     }
 
 }

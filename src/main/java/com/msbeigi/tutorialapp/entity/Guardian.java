@@ -50,4 +50,9 @@ public class Guardian {
         this.mobile = mobile;
     }
 
+    @Override
+    public String toString() {
+        return "Guardian [name=" + name + ", email=" + email + ", mobile=" + mobile + "]";
+    }
+
 }
